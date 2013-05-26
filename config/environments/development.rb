@@ -16,8 +16,16 @@ Iwissen::Application.configure do
   # ActionMailer Config
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address => 'smtp.ym.163.com',
+    :port => 25,
+    :domain => 'iwissen.com',
+    :user_name => ENV['ADMIN_EMAIL'],
+    :password => ENV['ADMIN_PASSWORD'],
+    :authentication => :plain
+  }
   # change to true to allow email to be sent during development
-  config.action_mailer.perform_deliveries = false
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default :charset => "utf-8"
 
