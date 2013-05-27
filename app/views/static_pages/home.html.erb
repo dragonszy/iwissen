@@ -1,4 +1,5 @@
-<h3>Home</h3>
+<% provide(:title, '首页') %>
+<h1>爱知学堂</h1>
 <% @users.each do |user| %>
   <p>User: <%=link_to user.name, user %>  Email: <%= user.email %></p>
 <% end %>
