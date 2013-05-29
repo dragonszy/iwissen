@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   devise :invitable, :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:login]
 
+  has_many :courses
   attr_accessor :login
   # Setup accessible (or protected) attributes for your model
   attr_accessible :role_ids, :as => :admin
