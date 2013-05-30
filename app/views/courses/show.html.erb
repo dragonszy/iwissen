@@ -27,8 +27,14 @@
 </p>
 
 <%= render :partial => "unit_list", :locals => { :units => @course.units} %>
+<% if can? :create, @unit %>
 <%= render :partial => "new_unit", :locals => { :unit => Unit.new( :course_id => @course.id ) } %>
+<% end %>
 
-<% if can? :update, @course %><%= link_to 'Edit', edit_course_path(@course) %><% end %>
+<% if can? :update, @course %>
+<%= link_to 'Edit', edit_course_path(@course) %>
+<% end %>
+
 <br>
+
 <%= link_to 'Back', courses_path %>
