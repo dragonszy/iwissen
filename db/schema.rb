@@ -96,17 +96,4 @@ ActiveRecord::Schema.define(:version => 20130530132911) do
 
   add_index "users_roles", ["user_id", "role_id"], :name => "index_users_roles_on_user_id_and_role_id"
 
-  create_table "videos", :force => true do |t|
-    t.string   "name"
-    t.text     "material"
-    t.integer  "unit_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string   "video_url"
-    t.string   "image_url"
-    t.text     "quiz"
-  end
-
-  add_index "videos", ["unit_id"], :name => "index_videos_on_unit_id"
-
 end
