@@ -1,0 +1,15 @@
+<h3>新建课程单元</h3>
+
+<%= simple_form_for(unit) do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.hidden_field :course_id %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
