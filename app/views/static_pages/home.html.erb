@@ -1,5 +1,7 @@
 <% provide(:title, '首页') %>
 <h1>爱知学堂</h1>
 <% @users.each do |user| %>
-  <p>User: <%=link_to user.name, user %>  Email: <%= user.email %></p>
+  <p>User: <%=link_to user.name, user %>
+  	 Email: <%= user.email %>
+  	 Admin: <% if user.has_role? :admin %> <%= 'Yes' %><% else %><%= 'No' %><% end %>
 <% end %>

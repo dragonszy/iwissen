@@ -3,4 +3,5 @@ class Course < ActiveRecord::Base
   has_many :unit
   attr_accessible :description, :name, :teacher, :title, :user_id
   validates :title, :name, :presence => true
+  validates :title, :uniqueness => true
 end
