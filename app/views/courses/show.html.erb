@@ -26,9 +26,13 @@
   <%= @course.user %>
 </p>
 
-<%= render :partial => "unit_list", :locals => { :units => @course.units} %>
+
+<h3>课程单元列表</h3>
+<%= render @course.units %>
+
+<h3>创建新单元</h3>
 <% if can? :create, @unit %>
-<%= render :partial => "new_unit", :locals => { :unit => Unit.new( :course_id => @course.id ) } %>
+<%= render "units/form" %>
 <% end %>
 
 <% if can? :update, @course %>

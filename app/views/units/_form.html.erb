@@ -1,6 +1,4 @@
-<h3>新建课程单元</h3>
-
-<%= simple_form_for(unit) do |f| %>
+<%= simple_form_for([@course, @course.units.build]) do |f| %>
   <%= f.error_notification %>
 
   <%= f.hidden_field :course_id %>

@@ -15,15 +15,16 @@ class UnitsController < ApplicationController
 
   def create
   	authorize! :create, @user, :message => 'Not authorized as an administrator.'
-    @unit = Unit.new(params[:unit])
+    @course = Course.find(params[:course_id])
+    @unit = @course.units.create(params[:unit])
 
     if @unit.save
       # redirect_to :back may work properly, but is it the best practice?
-      redirect_to :back
+      redirect_to course_path(@course)
       # redirect_to "/courses/#{@course.id}"
       # some errors in redirection
     else
-      redirect_to :back, :notice => "未能成功创建课程单元"
+      redirect_to course_path(@course), :notice => "未能成功创建课程单元"
     end
   end
 
@@ -36,7 +37,10 @@ class UnitsController < ApplicationController
   end
 
   def destroy
-  	
+  	@course = Course.find(params[:course_id])
+    @unit = @course.units.find(params[:id])
+    @unit.destroy
+    redirect_to course_path(@course)
   end
 
 end

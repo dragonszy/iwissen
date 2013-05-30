@@ -1,7 +1,8 @@
 Iwissen::Application.routes.draw do
 
-  resources :courses
-  resources :units
+  resources :courses do
+    resources :units 
+  end
 
 
   match '/' => 'static_pages#home'
