@@ -1,4 +1,6 @@
-<p> 单元名称: <%= unit.name %>
+<p> 单元名称: 
+	<%= unit.name %> 
+	<%= link_to 'Show', [unit.course, unit] %>
 	<%= link_to '删除', [unit.course, unit],
 							:confirm => 'Are you sure?',
 							:method => :delete %>

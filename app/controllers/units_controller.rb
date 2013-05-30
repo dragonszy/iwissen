@@ -5,7 +5,7 @@ class UnitsController < ApplicationController
   end
 
   def show
-  	
+  	@unit = Unit.find(params[:id])
   end
 
   def new
@@ -20,7 +20,7 @@ class UnitsController < ApplicationController
 
     if @unit.save
       # redirect_to :back may work properly, but is it the best practice?
-      redirect_to course_path(@course)
+      redirect_to course_path(@course), :notice => "成功创建单元"
       # redirect_to "/courses/#{@course.id}"
       # some errors in redirection
     else
