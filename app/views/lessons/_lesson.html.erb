@@ -1,3 +1,8 @@
 <p>
-	<b>Lesson name: </b> <%= @lesson.name %>
+	<b>Lesson name: </b> <%= lesson.name %>
+</p>
+<p>
+	<%= link_to 'Destroy Lesson', [lesson.course, lesson],
+				:confirm => 'Are you sure?',
+				:method => :delete %>
 </p>

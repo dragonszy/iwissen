@@ -7,6 +7,6 @@ FactoryGirl.define do
     video_url "MyString"
     quiz "MyText"
     material "MyText"
-    unit nil
+    course nil
   end
 end

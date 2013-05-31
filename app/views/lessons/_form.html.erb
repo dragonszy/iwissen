@@ -1,0 +1,16 @@
+<%= simple_form_for([@course, @course.lessons.build]) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :image_url %>
+    <%= f.input :video_url %>
+    <%= f.input :quiz %>
+    <%= f.input :material %>
+    <%= f.association :course %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -1,9 +1,7 @@
 Iwissen::Application.routes.draw do
 
   resources :courses do
-    resources :units do
-      resources :lessons
-    end
+    resources :lessons
   end
 
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130530132911) do
+ActiveRecord::Schema.define(:version => 20130531011243) do
 
   create_table "courses", :force => true do |t|
     t.string   "title"
@@ -31,12 +31,12 @@ ActiveRecord::Schema.define(:version => 20130530132911) do
     t.string   "video_url"
     t.text     "quiz"
     t.text     "material"
-    t.integer  "unit_id"
+    t.integer  "course_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  add_index "lessons", ["unit_id"], :name => "index_lessons_on_unit_id"
+  add_index "lessons", ["course_id"], :name => "index_lessons_on_course_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -48,15 +48,6 @@ ActiveRecord::Schema.define(:version => 20130530132911) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
-
-  create_table "units", :force => true do |t|
-    t.string   "name"
-    t.integer  "course_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "units", ["course_id"], :name => "index_units_on_course_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                :default => "", :null => false

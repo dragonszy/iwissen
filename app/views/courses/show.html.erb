@@ -27,12 +27,13 @@
 </p>
 
 
-<h3>课程单元列表</h3>
-<%= render @course.units %>
+<h3>课程列表</h3>
+<%= render @course.lessons %>
 
+
+<% if can? :create, @lesson %>
 <h3>创建新单元</h3>
-<% if can? :create, @unit %>
-<%= render "units/form" %>
+<%= render "lessons/form" %>
 <% end %>
 
 <% if can? :update, @course %>
