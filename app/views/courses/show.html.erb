@@ -1,35 +1,30 @@
-<h3>课程介绍</h3>
-<p id="notice"><%= notice %></p>
+<% provide(:title, "#{@course.name}") %>
 
-<p>
-  <b>Title:</b>
-  <%= @course.title %>
-</p>
-
-<p>
-  <b>Name:</b>
-  <%= @course.name %>
-</p>
-
-<p>
-  <b>Teacher:</b>
-  <%= @course.teacher %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @course.description %>
-</p>
-
-<p>
-  <b>User:</b>
-  <%= @course.user %>
-</p>
+<div class="row-fluid">
+<div class="span12">
+  <h3><%= @course.title %> : <%= @course.name %></h3>
+  <p>授课讲师：<%= @course.teacher %></p>
+</div>
+</div>
 
 
-<h3>课程列表</h3>
-<%= render @course.lessons %>
+  <div class="row-fluid">
+    <div class="span3">
+      <ul class="nav nav-list">
+        <li class="nav-header">
+          <%= @course.name %>
+        </li>
+        <% @course.lessons.each do |lesson| %>
+        <li>
+          <a href="#"><%= lesson.name %></a>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="span9">
 
+    </div>
+  </div>
 
 <% if can? :create, @lesson %>
 <h3>创建新单元</h3>
@@ -40,6 +35,3 @@
 <%= link_to 'Edit', edit_course_path(@course) %>
 <% end %>
 
-<br>
-
-<%= link_to 'Back', courses_path %>

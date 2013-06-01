@@ -1,37 +1,35 @@
-<h1>Listing courses</h1>
-
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Name</th>
-    <th>Teacher</th>
-    <th>Description</th>
-    <th>User</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @courses.each do |course| %>
-  <tr>
-    <td><%= course.title %></td>
-    <td><%= course.name %></td>
-    <td><%= course.teacher %></td>
-    <td><%= course.description %></td>
-    <td><%= course.user %></td>
-    <td><%= link_to 'Show', course %></td>
-    <% if can? :update, @course %>
-    <td><%= link_to 'Edit', edit_course_path(course) %></td>
-    <% end %>
-    <% if can? :destory, @course %>
-    <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <% end %>
-  </tr>
+<% provide(:title, '课程列表') %>
+    <% @courses.each do |course| %>
+    <div class="row-fluid">
+        <div class="span4">
+            <div class="media">
+               <a href="#" class="pull-left"><img src="assets/courses/cs101.jpg" class="media-object" width= '140px' alt='' /></a>
+               <div class="media-body">
+                <h4 class="media-heading">
+                    <%= link_to course.name, course %>
+                </h4> 
+                讲师: <%= course.teacher %>
+            </div>
+            <% if can? :update, @course %>
+            <%= link_to 'Edit', edit_course_path(course) %>
+            <% end %>
+            <% if can? :destory, @course %>
+            <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
+        </div>
+    </div>
+    <div class="span4">
+        <blockquote>
+            <p>github是一个全球化的开源社区.</p> 
+            <small>课程代码 <cite><%= course.title %></cite></small>
+        </blockquote>
+    </div>
+    <div class="span4">
+        <p><%= course.description %></p>
+    </div>
+</div>
 <% end %>
-</table>
-
-<br />
 
 <% if can? :create, Course %>
-<%= link_to 'New Course', new_course_path %>
+<%= link_to '新建课程', new_course_path %>
 <% end %>
