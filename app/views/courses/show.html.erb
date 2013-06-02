@@ -6,7 +6,7 @@
   <p>授课讲师：<%= @course.teacher %></p>
 </div>
 </div>
-
+<hr class="bs-docs-separator">
 
   <div class="row-fluid">
     <div class="span3">
@@ -22,16 +22,29 @@
       </ul>
     </div>
     <div class="span9">
-
+    <%= render "lessons/video"%>
     </div>
   </div>
+  <hr class="bs-docs-separator">
+  <div class="row-fluid">
+    <%= render "lessons/material" %>
+  </div>
+  <hr class="bs-docs-separator">
+  <div class="row-fluid">
+    <%= render "lessons/comment" %>
+  </div>
 
-<% if can? :create, @lesson %>
-<h3>创建新单元</h3>
+<hr class="bs-docs-separator">
+<div class="row-fluid">
+  <% if can? :create, @lesson %>
+<h3>创建新Lesson</h3>
 <%= render "lessons/form" %>
 <% end %>
-
 <% if can? :update, @course %>
-<%= link_to 'Edit', edit_course_path(@course) %>
+<%= link_to '编辑课程', edit_course_path(@course) %>
 <% end %>
+</div>
+
+
+
 

@@ -11,10 +11,10 @@
                 讲师: <%= course.teacher %>
             </div>
             <% if can? :update, @course %>
-            <%= link_to 'Edit', edit_course_path(course) %>
+            <%= link_to '编辑', edit_course_path(course) %>
             <% end %>
             <% if can? :destory, @course %>
-            <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to '删除', course, method: :delete, data: { confirm: '确认删除?' } %>
             <% end %>
         </div>
     </div>

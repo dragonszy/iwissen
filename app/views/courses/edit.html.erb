@@ -1,6 +1,7 @@
-<h1>Editing course</h1>
+<% provide(:title, '编辑课程') %>
+<h1>编辑课程</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @course %> |
-<%= link_to 'Back', courses_path %>
+<%= link_to '显示', @course %> |
+<%= link_to '返回', courses_path %>

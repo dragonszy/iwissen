@@ -1,7 +1,5 @@
 class LessonsController < ApplicationController
 
-
-
   def new
     authorize! :new, @user, :message => 'Not authorized as an administrator.'
     @lesson = Lesson.new
@@ -14,12 +12,26 @@ class LessonsController < ApplicationController
     redirect_to course_path(@course)
   end
 
-  def update
-  	
+  def edit
+  	authorize! :edit, @user, :message => 'Not authorized as an administrator.'
+    @course = Course.find(params[:course_id])
+    @lesson = @course.lessons.find(params[:id])
   end
 
-  def edit
-  	
+  def update
+    authorize! :update, @user, :message => 'Not authorized as an administrator.'
+    @course = Course.find(params[:id])
+    @lesson = @course.lessons.find(params[:id])
+
+    respond_to do |format|
+      if @course.update_attributes(params[:lesson])
+        format.html { redirect_to @course, notice: 'Lesson was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @lesson.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy

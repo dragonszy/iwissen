@@ -2,7 +2,7 @@
 	<b>Lesson name: </b> <%= lesson.name %>
 </p>
 <p>
-	<%= link_to 'Destroy Lesson', [lesson.course, lesson],
-				:confirm => 'Are you sure?',
+	<%= link_to '删除Lesson', [lesson.course, lesson],
+				:confirm => '确认删除?',
 				:method => :delete %>
 </p>
