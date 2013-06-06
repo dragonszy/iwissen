@@ -3,5 +3,5 @@
 
 <%= render 'form' %>
 
-<%= link_to '显示', @course %> |
+<%= link_to '显示', show_course_path(@course.title) %> |
 <%= link_to '返回', courses_path %>

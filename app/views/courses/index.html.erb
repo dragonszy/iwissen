@@ -6,15 +6,15 @@
                <a href="#" class="pull-left"><img src="assets/courses/cs101.jpg" class="media-object" width= '140px' alt='' /></a>
                <div class="media-body">
                 <h4 class="media-heading">
-                    <%= link_to course.name, course %>
+                    <%= link_to course.name, show_course_path(course.title) %>
                 </h4> 
                 讲师: <%= course.teacher %>
             </div>
             <% if can? :update, @course %>
-            <%= link_to '编辑', edit_course_path(course) %>
+            <%= link_to '编辑', edit_course_path(course.title) %>
             <% end %>
             <% if can? :destory, @course %>
-            <%= link_to '删除', course, method: :delete, data: { confirm: '确认删除?' } %>
+            <%= link_to '删除', delete_course_path(course.title), method: :delete, data: { confirm: '确认删除?' } %>
             <% end %>
         </div>
     </div>

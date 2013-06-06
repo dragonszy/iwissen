@@ -13,7 +13,8 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.json
   def show
-    @course = Course.find(params[:id])
+    # @course = Course.find(params[:id])
+    @course = Course.find_by_title(params[:course_title])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -36,7 +37,8 @@ class CoursesController < ApplicationController
   # GET /courses/1/edit
   def edit
     authorize! :edit, @user, :message => 'Not authorized as an administrator.'
-    @course = Course.find(params[:id])
+    # @course = Course.find(params[:id])
+    @course = Course.find_by_title(params[:course_title])
   end
 
   # POST /courses
@@ -47,8 +49,8 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       if @course.save
-        format.html { redirect_to @course, notice: 'Course was successfully created.' }
-        format.json { render json: @course, status: :created, location: @course }
+        format.html { redirect_to courses_path, notice: 'Course was successfully created.' }
+        format.json { render json: courses_url, status: :created, location: @course }
       else
         format.html { render action: "new" }
         format.json { render json: @course.errors, status: :unprocessable_entity }
@@ -60,7 +62,8 @@ class CoursesController < ApplicationController
   # PUT /courses/1.json
   def update
     authorize! :update, @user, :message => 'Not authorized as an administrator.'
-    @course = Course.find(params[:id])
+    # @course = Course.find(params[:id])
+    @course = Course.find_by_title(params[:course_title])
 
     respond_to do |format|
       if @course.update_attributes(params[:course])
@@ -77,7 +80,8 @@ class CoursesController < ApplicationController
   # DELETE /courses/1.json
   def destroy
     authorize! :destroy, @user, :message => 'Not authorized as an administrator.'
-    @course = Course.find(params[:id])
+    # @course = Course.find(params[:id])
+    @course = Course.find_by_title(params[:course_title])
     @course.destroy
 
     respond_to do |format|

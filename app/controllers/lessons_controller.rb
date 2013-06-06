@@ -7,20 +7,23 @@ class LessonsController < ApplicationController
 
   def create
   	authorize! :create, @user, :message => 'Not authorized as an administrator.'
-    @course = Course.find(params[:course_id])
+    # @course = Course.find(params[:course_id])
+    @course = Course.find_by_title(params[:course_title])
     @lesson = @course.lessons.create(params[:lesson])
     redirect_to course_path(@course)
   end
 
   def edit
   	authorize! :edit, @user, :message => 'Not authorized as an administrator.'
-    @course = Course.find(params[:course_id])
+    # @course = Course.find(params[:course_id])
+    @course = Course.find_by_title(params[:course_title])
     @lesson = @course.lessons.find(params[:id])
   end
 
   def update
     authorize! :update, @user, :message => 'Not authorized as an administrator.'
-    @course = Course.find(params[:id])
+    # @course = Course.find(params[:id])
+    @course = Course.find_by_title(params[:course_title])
     @lesson = @course.lessons.find(params[:id])
 
     respond_to do |format|
@@ -35,7 +38,8 @@ class LessonsController < ApplicationController
   end
 
   def destroy
-  	@course = Course.find(params[:course_id])
+  	# @course = Course.find(params[:course_id])
+    @course = Course.find_by_title(params[:course_title])
     @lesson = @course.lessons.find(params[:id])
     @lesson.destroy
     redirect_to course_path(@course)

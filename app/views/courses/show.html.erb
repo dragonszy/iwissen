@@ -36,12 +36,14 @@
 
 <hr class="bs-docs-separator">
 <div class="row-fluid">
-  <% if can? :create, @lesson %>
+
+<%# if can? :create, @lesson %>
 <h3>创建新Lesson</h3>
-<%= render "lessons/form" %>
-<% end %>
+<%#= render "lessons/form" %>
+<%# end %>
+
 <% if can? :update, @course %>
-<%= link_to '编辑课程', edit_course_path(@course) %>
+<%= link_to '编辑课程', edit_course_path(@course.title) %>
 <% end %>
 </div>
 
