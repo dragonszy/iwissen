@@ -10,16 +10,7 @@
 
   <div class="row-fluid">
     <div class="span3">
-      <ul class="nav nav-list">
-        <li class="nav-header">
-          <%= @course.name %>
-        </li>
-        <% @course.lessons.each do |lesson| %>
-        <li>
-          <a href="#"><%= lesson.name %></a>
-        </li>
-        <% end %>
-      </ul>
+      <%= render "lessons/sidenav" %>
     </div>
     <div class="span9">
     <%= render "lessons/video"%>
