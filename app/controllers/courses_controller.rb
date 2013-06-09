@@ -34,13 +34,6 @@ class CoursesController < ApplicationController
     end
   end
 
-  # GET /courses/1/edit
-  def edit
-    authorize! :edit, @user, :message => 'Not authorized as an administrator.'
-    # @course = Course.find(params[:id])
-    @course = Course.find_by_title(params[:course_title])
-  end
-
   # POST /courses
   # POST /courses.json
   def create
@@ -58,6 +51,13 @@ class CoursesController < ApplicationController
     end
   end
 
+  # GET /courses/1/edit
+  def edit
+    authorize! :edit, @user, :message => 'Not authorized as an administrator.'
+    # @course = Course.find(params[:id])
+    @course = Course.find_by_title(params[:course_title])
+  end
+
   # PUT /courses/1
   # PUT /courses/1.json
   def update
@@ -67,7 +67,8 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       if @course.update_attributes(params[:course])
-        format.html { redirect_to @course, notice: 'Course was successfully updated.' }
+        format.html { redirect_to courses_path, notice: 'Course was successfully updated.' }
+        # redirect_to(@course)
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

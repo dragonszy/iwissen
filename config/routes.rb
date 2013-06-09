@@ -4,6 +4,8 @@ Iwissen::Application.routes.draw do
   #   resources :lessons
   # end
 
+  #resources :tests
+
   get '/courses' => 'courses#index', :as => 'courses'
 
   post '/courses' => 'courses#create'
@@ -12,8 +14,11 @@ Iwissen::Application.routes.draw do
   get '/courses/:course_title/edit' => 'courses#edit', :as => 'edit_course'
   put '/courses/:course_title' => 'courses#update', :as => 'course'
 
-  get '/courses/:course_title' => 'courses#show', :as => 'show_course'
-  delete '/courses/:course_title' => 'courses#destroy', :as => 'delete_course'
+  get '/courses/:course_title' => 'courses#show', :as => 'course'
+  delete '/courses/:course_title' => 'courses#destroy'
+
+  post '/courses/:course_title' => 'courses#create'
+  get '/courses/:course_title/new' => 'lessons#new', :as => 'lessons'
 
 
   match '/' => 'static_pages#home'

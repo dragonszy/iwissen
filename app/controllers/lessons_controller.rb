@@ -10,17 +10,17 @@ class LessonsController < ApplicationController
     # @course = Course.find(params[:course_id])
     @course = Course.find_by_title(params[:course_title])
     @lesson = @course.lessons.create(params[:lesson])
-    redirect_to course_path(@course)
+    redirect_to show_course_path(@course.title)
   end
 
-  def edit
+  def edit # HAS PROBLEMS
   	authorize! :edit, @user, :message => 'Not authorized as an administrator.'
     # @course = Course.find(params[:course_id])
     @course = Course.find_by_title(params[:course_title])
     @lesson = @course.lessons.find(params[:id])
   end
 
-  def update
+  def update # HAS PROBLEMS
     authorize! :update, @user, :message => 'Not authorized as an administrator.'
     # @course = Course.find(params[:id])
     @course = Course.find_by_title(params[:course_title])
@@ -28,7 +28,7 @@ class LessonsController < ApplicationController
 
     respond_to do |format|
       if @course.update_attributes(params[:lesson])
-        format.html { redirect_to @course, notice: 'Lesson was successfully updated.' }
+        format.html { redirect_to show_course_path(@course.title), notice: 'Lesson was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
