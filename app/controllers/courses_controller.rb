@@ -15,10 +15,16 @@ class CoursesController < ApplicationController
   def show
     # @course = Course.find(params[:id])
     @course = Course.find_by_title(params[:course_title])
-
+    @lessons = @course.lessons
+    if params[:lesson_name]
+      @current_lesson = @lessons.find_by_name(params[:lesson_name])
+    else
+      @current_lesson = @lessons.new(:name => '暂无课程')
+    end
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @course }
+      format.js
     end
   end
 

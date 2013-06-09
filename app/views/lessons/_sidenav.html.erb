@@ -1,10 +1,10 @@
 <ul class="nav nav-tabs nav-stacked">
-        <li class="nav-header">
-          <%= @course.name %>
-        </li>
-        <% @course.lessons.each do |lesson| %>
-        <li>
-          <a href="#"><%= lesson.name %></a>
-        </li>
-        <% end %>
+  <li class="nav-header">
+    <%= @course.name %>
+  </li>
+  <% @lessons.each do |lesson| %>
+  <li>
+  <%= link_to lesson.name, "/courses/#{@course.title}/#{lesson.name}", :remote => true %>
+  </li>
+  <% end %>
 </ul>

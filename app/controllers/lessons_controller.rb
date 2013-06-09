@@ -10,25 +10,25 @@ class LessonsController < ApplicationController
     # @course = Course.find(params[:course_id])
     @course = Course.find_by_title(params[:course_title])
     @lesson = @course.lessons.create(params[:lesson])
-    redirect_to show_course_path(@course.title)
+    redirect_to course_path(@course.title)
   end
 
   def edit # HAS PROBLEMS
   	authorize! :edit, @user, :message => 'Not authorized as an administrator.'
     # @course = Course.find(params[:course_id])
     @course = Course.find_by_title(params[:course_title])
-    @lesson = @course.lessons.find(params[:id])
+    @lesson = @course.lessons.find(params[:lesson_id])
   end
 
   def update # HAS PROBLEMS
     authorize! :update, @user, :message => 'Not authorized as an administrator.'
     # @course = Course.find(params[:id])
     @course = Course.find_by_title(params[:course_title])
-    @lesson = @course.lessons.find(params[:id])
+    @lesson = @course.lessons.find(params[:lesson_id])
 
     respond_to do |format|
       if @course.update_attributes(params[:lesson])
-        format.html { redirect_to show_course_path(@course.title), notice: 'Lesson was successfully updated.' }
+        format.html { redirect_to course_path(@course.title), notice: 'Lesson was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -40,9 +40,9 @@ class LessonsController < ApplicationController
   def destroy
   	# @course = Course.find(params[:course_id])
     @course = Course.find_by_title(params[:course_title])
-    @lesson = @course.lessons.find(params[:id])
+    @lesson = @course.lessons.find(params[:lesson_id])
     @lesson.destroy
-    redirect_to course_path(@course)
+    redirect_to course_path(@course.title)
   end
 
 end
