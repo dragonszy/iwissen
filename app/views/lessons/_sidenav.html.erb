@@ -4,7 +4,8 @@
   </li>
   <% @lessons.each do |lesson| %>
   <li>
-  <%= link_to lesson.name, "/courses/#{@course.title}/#{lesson.name}", :remote => true %>
+  <%= link_to lesson.name, "/courses/#{@course.title}/#{lesson.id}", :remote => true %>
+
   </li>
   <% end %>
 </ul>

@@ -1,3 +1,16 @@
 <div class="video-player">
-  <%= video_tag current_lesson.video_url, :size => "800x640" %>
+
+  <% if current_lesson.video_type == "youku" %>
+
+  <% elsif current_lesson.video_type == "mp4" %>
+  	<video id="<%= current_lesson.name %>" class="video-js vjs-default-skin"
+      controls preload="auto" width="800" height="640"
+      poster="<%= current_lesson.image_url %>"
+      data-setup='{"example_option":true}'>
+    <source src="<%= current_lesson.video_url %>" type='video/mp4' />
+    </video>
+  <% else %>
+    <%= image_tag 'constructing.jpg', :size => '800x640' %>
+  <% end %>
+
 </div>

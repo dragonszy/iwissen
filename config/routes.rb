@@ -18,12 +18,10 @@ Iwissen::Application.routes.draw do
   post '/courses/:course_title' => 'lessons#create', :as => 'lesson'
   get '/courses/:course_title/new' => 'lessons#new'
   # update a lesson
-  # get '/courses/:course_title/:lesson_id/edit' => 'lessons#edit', :as => 'edit_lesson'
-  # put '/courses/:course_title/:lesson_id' => 'lessons#update', :as => 'lesson'
+  get '/courses/:course_title/:lesson_id/edit' => 'lessons#edit', :as => 'edit_lesson'
+  put '/courses/:course_title/:lesson_id' => 'lessons#update'
   # delete a lesson
-  # delete '/courses/:course_title/:lesson_id' => 'lessons#destroy', :as => 'delete_lesson'
-
-
+  delete '/courses/:course_title/:lesson_id' => 'lessons#destroy', :as => 'delete_lesson'
 
 
   match '/' => 'static_pages#home'

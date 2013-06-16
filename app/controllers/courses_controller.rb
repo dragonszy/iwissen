@@ -16,8 +16,8 @@ class CoursesController < ApplicationController
     # @course = Course.find(params[:id])
     @course = Course.find_by_title(params[:course_title])
     @lessons = @course.lessons
-    if params[:lesson_name]
-      @current_lesson = @lessons.find_by_name(params[:lesson_name])
+    if params[:lesson_id]
+      @current_lesson = @lessons.find(params[:lesson_id])
     else
       @current_lesson = @lessons.new(:name => '暂无课程')
     end
